@@ -7,5 +7,5 @@ type Book struct {
 	TotalPages  int
 	Location    string
 	Path        string
-	Size        int64
+	Size        int64 // mb
 }
