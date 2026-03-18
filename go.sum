@@ -1,0 +1,4 @@
+github.com/mathieu-keller/epub-parser v1.2.1 h1:iQxA1DJqIkYOlqupyNSYgMRVjHt7M5eo4g7gQL9nOmA=
+github.com/mathieu-keller/epub-parser v1.2.1/go.mod h1:1TavlbO4wmHd1Dz0B7Y2PdNUnj1N1PZx4ouBzUl1j14=
+github.com/mathieu-keller/epub-parser/v2 v2.0.13 h1:QLgifN9Xmqxt/EiByyxn3tYVlZIEnTAz2Q1kSwNP/A4=
+github.com/mathieu-keller/epub-parser/v2 v2.0.13/go.mod h1:Z/zeQhMVvKfVXBxD0ZaAuz64xkvW41P1vPN1tr2z1OE=
