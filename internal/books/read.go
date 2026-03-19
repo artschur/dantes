@@ -1,33 +1,35 @@
 package books
 
 import (
-	"archive/zip"
-	"bytes"
-	"io"
-	"os"
+	"fmt"
 
-	"github.com/mathieu-keller/epub-parser"
+	"github.com/raitucarp/epub"
 )
 
-func (b *Book) Read() io.ReadCloser {
-	fileBytes, err := os.ReadFile(b.Path)
+func NewBook(path string) (*Book, error) {
+	r, err := epub.OpenReader(path)
 	if err != nil {
-		return nil
+		return nil, fmt.Errorf("error opening epub: %w", err)
 	}
+	return bookFromReader(&r, path), nil
+}
 
-	bytesReader := bytes.NewReader(fileBytes)
-	zipReader, err := zip.NewReader(bytesReader, b.Size)
+func NewBookFromBytes(data []byte) (*Book, error) {
+	r, err := epub.NewReader(data)
 	if err != nil {
-		return nil
+		return nil, fmt.Errorf("error reading epub: %w", err)
 	}
+	return bookFromReader(&r, ""), nil
+}
 
-	bookR, err := epub.OpenBook(zipReader)
-	if err != nil {
-		return nil
+func bookFromReader(r *epub.Reader, path string) *Book {
+	return &Book{
+		Path:        path,
+		epubReader:  r,
+		Author:      r.Author(),
+		Title:       r.Title(),
+		Description: r.Description(),
+		DocumentIds: r.ListContentDocumentIds(),
+		TotalPages:  len(r.ListContentDocumentIds()),
 	}
-	readCloser, err := bookR.Open(bookR.Container.Rootfile.Path)
-	if err != nil {
-		return nil
-	}
-	return readCloser
 }

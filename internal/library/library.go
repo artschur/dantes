@@ -2,7 +2,6 @@ package library
 
 import (
 	"dantes/internal/books"
-	"io"
 )
 
 type Library struct {
@@ -19,6 +18,6 @@ func (l *Library) GetBooks() []books.Book {
 	return l.books
 }
 
-func (l *Library) ReadBook(book books.Book) io.ReadCloser {
-	return book.Read()
-}
+// func (l *Library) ReadBook(book books.Book) io.ReadCloser {
+
+// }
